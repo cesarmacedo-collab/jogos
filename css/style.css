@@ -903,3 +903,233 @@ a {
     }
 }
 ```
+```css
+/* =========================================
+   FUNDO MATEMÁTICO MAIS RICO
+========================================= */
+
+
+/* Mais símbolos matemáticos */
+
+.symbol-7 {
+    top: 42%;
+    left: 4%;
+    color: #2563eb;
+    font-size: 2.8rem;
+}
+
+.symbol-8 {
+    top: 65%;
+    left: 23%;
+    color: #f97316;
+    font-size: 2.2rem;
+}
+
+.symbol-9 {
+    top: 75%;
+    right: 32%;
+    color: #8b5cf6;
+    font-size: 2.8rem;
+}
+
+.symbol-10 {
+    top: 48%;
+    right: 2%;
+    color: #22c55e;
+    font-size: 3rem;
+}
+
+.symbol-11 {
+    bottom: 5%;
+    left: 42%;
+    color: #ec4899;
+    font-size: 2.4rem;
+}
+
+.symbol-12 {
+    top: 18%;
+    left: 38%;
+    color: #f97316;
+    font-size: 2.3rem;
+}
+
+.symbol-13 {
+    top: 80%;
+    left: 5%;
+    color: #8b5cf6;
+    font-size: 2.5rem;
+}
+
+.symbol-14 {
+    top: 60%;
+    right: 15%;
+    color: #2563eb;
+    font-size: 2.5rem;
+}
+
+.symbol-15 {
+    top: 8%;
+    left: 25%;
+    color: #22c55e;
+    font-size: 2.3rem;
+}
+
+.symbol-16 {
+    bottom: 10%;
+    right: 25%;
+    color: #facc15;
+    font-size: 2.6rem;
+}
+
+
+/* =========================================
+   NOVAS FORMAS GEOMÉTRICAS
+========================================= */
+
+.circle-2 {
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+
+    background: #22c55e;
+
+    top: 35%;
+    left: 18%;
+
+    opacity: 0.07;
+}
+
+
+.square-2 {
+    width: 75px;
+    height: 75px;
+
+    background: #ec4899;
+
+    top: 20%;
+    right: 38%;
+
+    transform: rotate(35deg);
+
+    opacity: 0.07;
+}
+
+
+/* LOSANGO */
+
+.diamond {
+    width: 85px;
+    height: 85px;
+
+    background: #f97316;
+
+    top: 68%;
+    right: 7%;
+
+    transform: rotate(45deg);
+
+    opacity: 0.07;
+}
+
+
+/* CÍRCULO VAZADO */
+
+.ring {
+    width: 130px;
+    height: 130px;
+
+    border: 15px solid #8b5cf6;
+
+    border-radius: 50%;
+
+    bottom: 8%;
+    right: 40%;
+
+    opacity: 0.07;
+}
+
+
+/* =========================================
+   PADRÃO GEOMÉTRICO SUTIL
+========================================= */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.35;
+
+    background-image:
+
+        linear-gradient(
+            30deg,
+            rgba(37, 99, 235, 0.035) 12%,
+            transparent 12.5%,
+            transparent 87%,
+            rgba(37, 99, 235, 0.035) 87.5%
+        ),
+
+        linear-gradient(
+            150deg,
+            rgba(139, 92, 246, 0.035) 12%,
+            transparent 12.5%,
+            transparent 87%,
+            rgba(139, 92, 246, 0.035) 87.5%
+        );
+
+    background-size: 80px 140px;
+
+    z-index: 0;
+}
+
+
+/* =========================================
+   PONTINHOS MATEMÁTICOS NO FUNDO
+========================================= */
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    top: 20%;
+    left: 45%;
+
+    border-radius: 50%;
+
+    background-image:
+        radial-gradient(
+            rgba(37, 99, 235, 0.12) 2px,
+            transparent 2px
+        );
+
+    background-size: 28px 28px;
+
+    opacity: 0.35;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+
+/* Garante que o conteúdo fique acima do fundo */
+
+.hero-content {
+    z-index: 2;
+}
+
+.math-symbol,
+.shape {
+    z-index: 1;
+}
+```
