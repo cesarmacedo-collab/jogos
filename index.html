@@ -1,191 +1,220 @@
+```html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Missão Proporção - 9º Ano</title>
-<style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#1e3a8a,#7c3aed);color:#fff;min-height:100vh}
-.container{max-width:850px;margin:auto;padding:24px}
-.card{background:#fff;color:#172033;border-radius:22px;padding:28px;box-shadow:0 12px 35px #0005}
-h1,h2{margin-top:0}
-.start{text-align:center;margin-top:8vh}
-.start h1{font-size:42px;color:#312e81}
-.start p{font-size:18px;line-height:1.5}
-button{border:0;border-radius:12px;padding:14px 20px;font-size:16px;font-weight:bold;cursor:pointer;margin:7px;background:#4f46e5;color:#fff}
-button:hover{filter:brightness(1.08)}
-.hidden{display:none}
-.top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:18px}
-.badge{background:#eef2ff;color:#3730a3;padding:9px 13px;border-radius:999px;font-weight:bold}
-.progress{height:12px;background:#e5e7eb;border-radius:20px;overflow:hidden;margin:15px 0 25px}
-.bar{height:100%;background:#4f46e5;width:0%;transition:.3s}
-.question{font-size:22px;line-height:1.45;font-weight:bold;margin:20px 0}
-.options{display:grid;gap:12px}
-.option{background:#f3f4f6;color:#111827;text-align:left;width:100%;margin:0}
-.option.correct{background:#dcfce7;color:#166534}
-.option.wrong{background:#fee2e2;color:#991b1b}
-.feedback{margin-top:18px;padding:15px;border-radius:12px;line-height:1.45}
-.ok{background:#dcfce7;color:#166534}
-.no{background:#fee2e2;color:#991b1b}
-#next{display:block;margin:18px auto 0}
-.result{text-align:center}
-.score{font-size:42px;font-weight:bold;color:#4f46e5}
-.small{font-size:14px;color:#6b7280}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Jogos, desafios e atividades interativas para aprender Matemática de forma divertida.">
+    <meta name="author" content="Matemática • Educação">
+
+    <title>Matemática • Educação</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-<div class="container">
 
-<section id="start" class="card start">
-  <h1>🎯 Missão Proporção</h1>
-  <p><strong>Matemática — 9º ano</strong></p>
-  <p>Teste seus conhecimentos sobre razão, proporção e grandezas proporcionais.</p>
-  <p>São <strong>10 desafios</strong>. Leia com atenção e escolha a melhor resposta.</p>
-  <button onclick="startGame()">🚀 Começar missão</button>
-</section>
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+    <header class="header">
 
-<section id="game" class="card hidden">
-  <div class="top">
-    <span class="badge" id="phase">Desafio 1/10</span>
-    <span class="badge" id="points">⭐ 0 pontos</span>
-    <span class="badge" id="lives">❤️ 3 vidas</span>
-  </div>
-  <div class="progress"><div class="bar" id="bar"></div></div>
-  <div class="question" id="question"></div>
-  <div class="options" id="options"></div>
-  <div id="feedback" class="hidden"></div>
-  <button id="next" class="hidden" onclick="nextQuestion()">Próximo desafio ➜</button>
-</section>
+        <div class="container header-content">
 
-<section id="result" class="card result hidden">
-  <h1>🏆 Missão concluída!</h1>
-  <p>Você fez:</p>
-  <div class="score" id="finalScore"></div>
-  <p id="message"></p>
-  <button onclick="location.reload()">🔄 Jogar novamente</button>
-</section>
+            <a href="index.html" class="logo">
+                <span class="logo-icon">∑</span>
+                <span>MATEMÁTICA</span>
+            </a>
 
-</div>
+            <!-- Botão do menu mobile -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+                ☰
+            </button>
 
-<script>
-const questions = [
-{
- q:"Uma receita para 4 pessoas usa 300 g de arroz. Mantendo a mesma proporção, quanto de arroz será necessário para 10 pessoas?",
- a:["600 g","750 g","800 g","900 g"], c:1,
- e:"Se 4 pessoas usam 300 g, cada pessoa corresponde a 75 g. Para 10 pessoas: 10 × 75 = 750 g."
-},
-{
- q:"Um carro percorre 180 km com 15 litros de combustível. Mantendo o mesmo consumo, quantos quilômetros ele percorre com 25 litros?",
- a:["250 km","270 km","300 km","330 km"], c:2,
- e:"180 ÷ 15 = 12 km por litro. Então 25 × 12 = 300 km."
-},
-{
- q:"Observe: 2 cadernos custam R$ 18. Se o preço for diretamente proporcional à quantidade, quanto custam 5 cadernos?",
- a:["R$ 36","R$ 40","R$ 45","R$ 50"], c:2,
- e:"Cada caderno custa 18 ÷ 2 = R$ 9. Cinco cadernos custam 5 × 9 = R$ 45."
-},
-{
- q:"Qual situação representa uma relação diretamente proporcional?",
- a:["A idade de uma pessoa e sua altura durante toda a vida.","A quantidade de produtos iguais e o preço total, sem descontos.","A velocidade de um carro e o tempo para percorrer uma distância fixa.","O número de alunos e a nota de uma prova."], c:1,
- e:"Quando o preço unitário é constante, dobrar a quantidade dobra o preço total."
-},
-{
- q:"Uma fotografia tem 12 cm de largura e 8 cm de altura. Uma ampliação mantém a proporção e passa a ter 18 cm de largura. Qual será a nova altura?",
- a:["10 cm","12 cm","14 cm","16 cm"], c:1,
- e:"O fator de ampliação é 18 ÷ 12 = 1,5. Então 8 × 1,5 = 12 cm."
-},
-{
- q:"Em um mapa, 1 cm representa 5 km. Duas cidades estão separadas por 7,5 cm no mapa. Qual é a distância real?",
- a:["25 km","30 km","37,5 km","40 km"], c:2,
- e:"7,5 × 5 = 37,5 km."
-},
-{
- q:"Uma máquina produz 240 peças em 6 horas, mantendo ritmo constante. Quantas peças produzirá em 9 horas?",
- a:["300","320","360","420"], c:2,
- e:"240 ÷ 6 = 40 peças por hora. Em 9 horas: 9 × 40 = 360 peças."
-},
-{
- q:"Uma escola tem 3 professores para cada 90 alunos. Mantendo a mesma razão, quantos professores seriam necessários para 150 alunos?",
- a:["4","5","6","7"], c:1,
- e:"90 ÷ 3 = 30 alunos por professor. 150 ÷ 30 = 5 professores."
-},
-{
- q:"Uma loja oferece 2 kg de um produto por R$ 24. Outra oferece 3 kg por R$ 33. Qual opção tem menor preço por quilograma?",
- a:["A primeira, R$ 12/kg","A segunda, R$ 11/kg","As duas têm o mesmo preço","Não é possível comparar"], c:1,
- e:"Primeira: 24 ÷ 2 = R$ 12/kg. Segunda: 33 ÷ 3 = R$ 11/kg. A segunda é mais barata por kg."
-},
-{
- q:"Uma torneira enche um reservatório com 120 litros em 8 minutos, mantendo vazão constante. Quantos litros serão colocados em 15 minutos?",
- a:["180 L","200 L","225 L","240 L"], c:2,
- e:"120 ÷ 8 = 15 litros por minuto. Em 15 minutos: 15 × 15 = 225 litros."
-}
-];
+            <nav class="nav" id="mainNav">
+                <a href="index.html" class="nav-link active">Início</a>
+                <a href="jogos/index.html" class="nav-link">Jogos</a>
+                <a href="#atividades" class="nav-link">Atividades</a>
+                <a href="#sobre" class="nav-link">Sobre</a>
+            </nav>
 
-let current=0, score=0, lives=3, answered=false;
+        </div>
 
-function startGame(){
- document.getElementById("start").classList.add("hidden");
- document.getElementById("game").classList.remove("hidden");
- showQuestion();
-}
-function showQuestion(){
- answered=false;
- const x=questions[current];
- document.getElementById("phase").textContent=`Desafio ${current+1}/${questions.length}`;
- document.getElementById("points").textContent=`⭐ ${score} pontos`;
- document.getElementById("lives").textContent=`❤️ ${lives} vidas`;
- document.getElementById("bar").style.width=((current)/questions.length*100)+"%";
- document.getElementById("question").textContent=x.q;
- const box=document.getElementById("options"); box.innerHTML="";
- x.a.forEach((text,i)=>{
-   const b=document.createElement("button");
-   b.className="option"; b.textContent=String.fromCharCode(65+i)+") "+text;
-   b.onclick=()=>answer(i,b);
-   box.appendChild(b);
- });
- const f=document.getElementById("feedback"); f.className="hidden"; f.innerHTML="";
- document.getElementById("next").classList.add("hidden");
-}
-function answer(i,button){
- if(answered)return;
- answered=true;
- const x=questions[current];
- document.querySelectorAll(".option").forEach((b,j)=>{
-   b.disabled=true;
-   if(j===x.c)b.classList.add("correct");
- });
- const f=document.getElementById("feedback");
- if(i===x.c){
-   score+=10;
-   f.className="feedback ok";
-   f.innerHTML="<strong>✅ Correto!</strong><br>"+x.e;
- }else{
-   lives--;
-   button.classList.add("wrong");
-   f.className="feedback no";
-   f.innerHTML="<strong>❌ Ainda não.</strong><br>"+x.e;
- }
- document.getElementById("points").textContent=`⭐ ${score} pontos`;
- document.getElementById("lives").textContent=`❤️ ${lives} vidas`;
- document.getElementById("next").classList.remove("hidden");
-}
-function nextQuestion(){
- current++;
- if(current>=questions.length || lives<=0){finish(); return;}
- showQuestion();
-}
-function finish(){
- document.getElementById("game").classList.add("hidden");
- document.getElementById("result").classList.remove("hidden");
- document.getElementById("finalScore").textContent=score+"/100";
- let msg= score>=90 ? "🌟 Excelente! Seu raciocínio proporcional está muito bom!" :
-         score>=70 ? "👏 Muito bom! Você está no caminho certo." :
-         score>=50 ? "💪 Bom começo! Revise as relações entre as grandezas e tente novamente." :
-         "📚 Vale revisar razão e proporção e jogar novamente. O erro faz parte da aprendizagem!";
- if(lives<=0) msg+=" Você ficou sem vidas, mas pode tentar novamente.";
- document.getElementById("message").textContent=msg;
-}
-</script>
+    </header>
+
+
+    <main>
+
+        <!-- =========================
+             HERO
+        ========================== -->
+        <section class="hero">
+
+            <!-- Elementos matemáticos decorativos -->
+            <span class="math-symbol symbol-1">+</span>
+            <span class="math-symbol symbol-2">π</span>
+            <span class="math-symbol symbol-3">√</span>
+            <span class="math-symbol symbol-4">×</span>
+            <span class="math-symbol symbol-5">÷</span>
+            <span class="math-symbol symbol-6">=</span>
+
+            <!-- Formas geométricas -->
+            <span class="shape circle"></span>
+            <span class="shape triangle"></span>
+            <span class="shape square"></span>
+
+            <div class="container hero-content">
+
+                <div class="hero-text">
+
+                    <span class="hero-label">
+                        🎓 APRENDER PODE SER DIVERTIDO
+                    </span>
+
+                    <h1>
+                        Aprender Matemática
+                        <span>pode ser divertido!</span>
+                    </h1>
+
+                    <p>
+                        Jogos, desafios e atividades interativas
+                        para aprender, praticar e descobrir
+                        a Matemática de um jeito diferente.
+                    </p>
+
+                    <a href="jogos/index.html" class="btn btn-primary">
+                        🎮 EXPLORAR JOGOS
+                    </a>
+
+                </div>
+
+                <!-- Ilustração matemática -->
+                <div class="hero-illustration">
+
+                    <div class="illustration-card">
+
+                        <div class="big-symbol">∑</div>
+
+                        <div class="small-symbol symbol-a">+</div>
+                        <div class="small-symbol symbol-b">×</div>
+                        <div class="small-symbol symbol-c">π</div>
+
+                        <div class="geometric-circle"></div>
+                        <div class="geometric-square"></div>
+                        <div class="geometric-triangle"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SOBRE O PROJETO
+        ========================== -->
+        <section class="about" id="sobre">
+
+            <div class="container about-content">
+
+                <div class="about-icon">
+                    🧮
+                </div>
+
+                <div class="about-text">
+
+                    <span class="section-label">
+                        SOBRE O PROJETO
+                    </span>
+
+                    <h2>
+                        Matemática além do papel e do lápis
+                    </h2>
+
+                    <p>
+                        Este projeto foi criado para tornar o aprendizado
+                        da Matemática mais interessante, interativo e
+                        significativo.
+                    </p>
+
+                    <p>
+                        Aqui você encontrará jogos, desafios e atividades
+                        pensados para ajudar os estudantes a aprender
+                        Matemática enquanto exploram, experimentam e se divertem.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ÁREA RESERVADA PARA
+             FUTURAS ATIVIDADES
+        ========================== -->
+        <section class="future-section" id="atividades">
+
+            <div class="container">
+
+                <span class="section-label">
+                    EM BREVE
+                </span>
+
+                <h2>
+                    Atividades Matemáticas
+                </h2>
+
+                <p>
+                    Novas atividades e desafios interativos serão
+                    adicionados aqui.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <div>
+                <strong>MATEMÁTICA • EDUCAÇÃO</strong>
+                <p>
+                    Aprender, praticar e descobrir.
+                </p>
+            </div>
+
+            <div>
+                <p>
+                    © 2026 • Todos os direitos reservados
+                </p>
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+
 </body>
 </html>
+```
